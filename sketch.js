@@ -21,24 +21,24 @@ function setup(){
 function draw(){
 
     background("black");
+Collide(wall,bullet);
+    drawSprites();
 
-    if(wall.x-bullet.x < (bullet.width+wall.width)/2){
-        bullet.velocityX=0;
-        
-        bullet.collide(wall);
+}
+
+function Collide(object1,object2){
+    if(object1.x-object2.x < (object2.width+object1.width)/2){
+        object2.velocityX=0;
+
+        object2.collide(object1);
 
         var damage=(0.5*weight*speed*speed)/(thickness*thickness*thickness);
         
         if(damage<10){
-            wall.shapeColor=color(0,128,0);
+            object1.shapeColor=color(0,128,0);
         }else    
         if(damage>=10){
-            wall.shapeColor=color(255,0,0);
+            object1.shapeColor=color(255,0,0);
         }
     }
-
-    console.log(damage);
-
-    drawSprites();
-
 }
